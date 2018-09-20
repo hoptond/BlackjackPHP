@@ -9,7 +9,7 @@ function deal(): int {
     $hand = array();
     $deck = createDeck();
     $score = 0;
-    while(continueDrawing($score)) {
+    while($score < 21) {
         $key = array_rand($deck,1);
         $card = $deck[$key];
         $deck = removeCardFromDeck($deck, $card);
@@ -139,20 +139,6 @@ function getCardValue($card, $score = 0): int {
     }
 }
 
-/*
- * This method determines if we should continue drawing cards.
- *
- * @ param int @aScore The player's current score.
- *
- * @ return bool Returns true if the value is below 21, otherwise false.
- */
-function continueDrawing($aScore): bool {
-    echo $aScore . '<br>';
-    if ($aScore < 21) {
-        return true;
-    }
-    return false;
-}
 
 /*
  * This outputs a string to our HTML to inform the player who won.
