@@ -13,7 +13,7 @@ function deal(): int {
         $key = array_rand($deck,1);
         $card = $deck[$key];
         $deck = removeCardFromDeck($deck, $card);
-        displayDrawnCard($card);
+        echo displayDrawnCard($card);
         $hand = addCardToHand($hand, $card);
         var_dump($hand);
         echo '<br>';
@@ -31,7 +31,7 @@ function createDeck(): array {
     $deck = array();
     $suits = array("Clubs", "Spades", "Hearts", "Diamonds");
     foreach($suits as $suit) {
-        for($i = 1; $i < 11; $i++) {
+        for($i = 2; $i < 11; $i++) {
             $deck[] = $suit . "_" . $i;
         }
         $deck[] = $suit . "_" ."Ace";
@@ -94,9 +94,9 @@ function removeCardFromDeck(array $deck, $card) : array {
  *
  * @return string Returns the string.
  */
-function displayDrawnCard($card) {
+function displayDrawnCard($card) : string {
     $values = explode("_", $card);
-    echo "Drew the " . $values[1] . " of " . $values[0] . "<br>";
+    return "Drew the " . $values[1] . " of " . $values[0] . "<br>";
 }
 
 /*
@@ -173,13 +173,13 @@ function displayWinner($aScore, $bScore): string {
             return "<br><br>Player one has won!";
         }
     }
-    if ($bScore > 21) {
-        return "<br><br>Player two has lost!";
-    }
     if ($bScore == 21) {
         return "<br><br>Player two has won!";
     }
-    return "";
+    if ($bScore > 21) {
+        return "<br><br>Player two has lost!";
+    }
+    return "<br><br>Continue drawing cards...";
 }
 ?>
 
