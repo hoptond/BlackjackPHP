@@ -18,6 +18,7 @@ function deal(): int {
         var_dump($hand);
         echo '<br>';
         $score = getPoints($hand);
+        echo $score . '<br>';
     }
     return $score;
 }
@@ -52,7 +53,7 @@ function createDeck(): array {
  * @return array Returns the the deck with the newly added card.
  */
 function addCardToHand(array $deck, $card) : array {
-    if(count($deck) == 0) {
+    if (count($deck) == 0) {
         echo 'inserted a card into the hand at position 0, hand was empty' . '<br>';
         $deck[] = $card;
         return $deck;
@@ -129,7 +130,7 @@ function getCardValue($card, $score = 0): int {
         return (int)$val;
     } else {
         if ($val === "Ace") {
-            if($score >= 11) {
+            if ($score >= 11) {
                 return 1;
             }
             return 11;

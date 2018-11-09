@@ -47,13 +47,17 @@ class StackTest extends TestCase
         $this->assertEquals("<br><br>Continue drawing cards...", $winner);
     }
 
+    public function testcreateDeck_success() {
+        $deck = createDeck();
+        $this->assertCount(52, $deck);
+        $this->assertContainsOnly('string', $deck);
+    }
+
     public function testDeal_success() {
         $score = deal();
         $this->assertGreaterThan(20, $score);
     }
-    public function testcreateDeck() {
-        $deck = createDeck();
-        $this->assertEquals(52, count($deck));
-    }
+
+
 }
 ?>
