@@ -1,5 +1,25 @@
 <?php
 
+
+require ('vendor/autoload.php');
+
+use Blackjack\Card;
+use Blackjack\Hand;
+use Blackjack\Deck;
+use Blackjack\Player;
+
+$dealer = new Player(true);
+$players = Array();
+
+array_push($players, new Player());
+array_push($players, new Player());
+
+$dealer->dealCard($players[0], rand(0, $dealer->getHeldCardsCount()));
+$dealer->dealCard($players[0], rand(0, $dealer->getHeldCardsCount()));
+$dealer->dealCard($players[1], rand(0, $dealer->getHeldCardsCount()));
+
+
+
 /*
  * Deals out cards until the score has been achieved or exceeded.
  *
@@ -114,32 +134,6 @@ function getPoints(array $playerDeck): int {
     }
     return $score;
 }
-/*
- * This function gets the value of a specific card. If it is a number card, the value is the number of a card. If it is a special card,
- * the value is either 11 if it is an Ace or 10 if it is not.
- *
- * @param string $card The card to get the value of.
- * @param int $score The current running score. By default, this score is 0.
- *
- * @return int Returns the value of the card.
- */
-function getCardValue($card, $score = 0): int {
-    //gets the initial value of this card by exploding the string and taking the second value, which is either a number or a string
-    $val = explode("_", $card)[1];
-    if (is_numeric($val)) {
-        return (int)$val;
-    } else {
-        if ($val === "Ace") {
-            if ($score >= 11) {
-                return 1;
-            }
-            return 11;
-        } else {
-            return 10;
-        }
-    }
-}
-
 
 /*
  * This outputs a string to our HTML to inform the player who won.
@@ -182,15 +176,12 @@ function displayWinner($aScore, $bScore): string {
         <div class ="player 1">
             <h2>Player 1</h2>
             <div>
-                <?php $aScore = Deal()?>
             </div>
         </div>
         <div class ="player 2">
             <h2>Player 2</h2>
-            <?php $bScore = Deal()?>
         </div>
     </div>
-    <div class ="winner"><?php echo displayWinner($aScore, $bScore)?></div>
     <button>
         <?php
 
