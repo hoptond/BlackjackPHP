@@ -14,10 +14,11 @@ $players = Array();
 array_push($players, new Player());
 array_push($players, new Player());
 
-$dealer->dealCard($players[0], rand(0, $dealer->getHeldCardsCount()));
-$dealer->dealCard($players[0], rand(0, $dealer->getHeldCardsCount()));
-$dealer->dealCard($players[1], rand(0, $dealer->getHeldCardsCount()));
+$dealer->dealCard($players[0], rand(0, $dealer->getHeldCardsCount() - 1));
+$dealer->dealCard($players[0], rand(0, $dealer->getHeldCardsCount() - 1));
+$dealer->dealCard($players[1], rand(0, $dealer->getHeldCardsCount() - 1));
 
+var_dump($players[0]->getPoints());
 
 
 /*
